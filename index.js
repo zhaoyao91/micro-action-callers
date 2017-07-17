@@ -1,5 +1,6 @@
 module.exports = {
-  callForResponse: require('./lib/call_for_response'),
-  callForBody: require('./lib/call_for_body'),
-  callForOk: require('./lib/call_for_ok'),
+  requestResponse: require('./lib/request_response'),
+  requestBody: require('./lib/request_body'),
+  requestOkOutput: require('./lib/request_ok_output'),
+  requestOkBody: require('./lib/request_ok_body')
 }

@@ -3,16 +3,17 @@ const test = require('ava')
 const listen = require('test-listen')
 const fetch = require('node-fetch')
 const {route} = require('micro-action')
-const {callForResponse, callForBody, callForOk} = require('./index')
+const {requestResponse, requestBody, requestOkOutput, requestOkBody} = require('./index')
 
 const service = micro(route({
-  'ping': () => 'pong'
-}))
+  'ping': () => 'pong',
+  'fail': () => {throw new Error('fail')}
+}, {errorLogger(){}}))
 
-test('call for response', async t => {
+test('request response', async t => {
   const url = await listen(service)
 
-  const res = await callForResponse(url, 'ping')
+  const res = await requestResponse(url, 'ping')
   const body = await res.json()
 
   t.deepEqual(body, {
@@ -21,10 +22,10 @@ test('call for response', async t => {
   })
 })
 
-test('call for body', async t => {
+test('request body', async t => {
   const url = await listen(service)
 
-  const body = await callForBody(url, 'ping')
+  const body = await requestBody(url, 'ping')
 
   t.deepEqual(body, {
     ok: true,
@@ -32,10 +33,19 @@ test('call for body', async t => {
   })
 })
 
-test('call for ok', async t => {
+test('request ok body', async t => {
   const url = await listen(service)
 
-  const output = await callForOk(url, 'ping')
+  const body = await requestOkBody(url, 'ping')
+  t.deepEqual(body, {ok: true, output: 'pong'})
+
+  const error = await t.throws(requestOkBody(url, 'fail'), Error)
+})
+
+test('request ok output', async t => {
+  const url = await listen(service)
+
+  const output = await requestOkOutput(url, 'ping')
 
   t.deepEqual(output, 'pong')
 })
