@@ -6,11 +6,11 @@ Callers to help call [micro-action][micro-action] service.
  
 ## API
 
-#### callForResponse
+#### requestResponse
 
 async func(url, cmd, input) => [fetchResponse][fetch-response]
 
-#### callForBody
+#### requestBody
 
 async func(url, cmd, input) => body
 
@@ -22,7 +22,13 @@ async func(url, cmd, input) => body
 - error - if it is a failure response, it may include an error object which contains information about what's happened 
 to help debug.
 
-#### callForOk
+#### requestOkBody
+
+async func(url, cmd, input) => body
+
+Only return if the body.ok=true, otherwise errors will be thrown.
+
+#### requestOk
 
 async func(url, cmd, input) => output
 
