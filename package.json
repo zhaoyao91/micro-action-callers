@@ -1,0 +1,21 @@
+{
+  "name": "micro-action-callers",
+  "description": "Callers to help call micro-action service.",
+  "version": "1.0.0",
+  "main": "callers.js",
+  "scripts": {
+    "test": "node --harmony node_modules/.bin/ava"
+  },
+  "repository": "",
+  "author": "zhaoyao91 <zhaoyao91@163.com>",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^1.7.1"
+  },
+  "devDependencies": {
+    "ava": "^0.21.0",
+    "micro": "^7.3.3",
+    "micro-action": "^4.0.0",
+    "test-listen": "^1.0.2"
+  }
+}
