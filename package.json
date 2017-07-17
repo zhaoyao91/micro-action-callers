@@ -1,8 +1,8 @@
 {
   "name": "micro-action-callers",
   "description": "Callers to help call micro-action service.",
-  "version": "1.0.0",
-  "main": "callers.js",
+  "version": "1.0.1",
+  "main": "index.js",
   "scripts": {
     "test": "node --harmony node_modules/.bin/ava"
   },
